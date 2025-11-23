@@ -1,28 +1,27 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ title }}</title>
-</head>
-<body>
-
-<h2>{{ title }}</h2>
-
-<!-- Show messages -->
-{% if messages %}
-    {% for message in messages %}
-        <p style="color:red;">{{ message }}</p>
-    {% endfor %}
-{% endif %}
-
-<form method="POST">
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="card p-4 shadow-sm">
+  <h4 class="mb-3">{{ title }}</h4>
+  <form method="post" novalidate>
     {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Save</button>
-</form>
-
-<a href="{% url 'students:student_list' %}">Back to List</a>
-
-</body>
-</html>
+    {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label">{{ field.label_tag }}</label>
+        {{ field }}
+        {% if field.help_text %}
+          <div class="form-text">{{ field.help_text }}</div>
+        {% endif %}
+        {% for error in field.errors %}
+          <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-warning">{{ form.non_field_errors }}</div>
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a class="btn btn-secondary" href="{% url 'students:student_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

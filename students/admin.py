@@ -9,3 +9,4 @@ class CourseAdmin(admin.ModelAdmin):
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'email', 'course', 'marks')
+    search_fields = ('name', 'email')
