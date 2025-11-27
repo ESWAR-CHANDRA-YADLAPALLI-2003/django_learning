@@ -1,21 +1,10 @@
-{% load static %}
-<!doctype html>
-<html>
-<head><title>Login</title></head>
-<body>
+<!-- templates/accounts/login.html -->
+{% extends 'base.html' %}
+{% block content %}
   <h2>Login</h2>
-  {% for message in messages %}
-    <div>{{ message }}</div>
-  {% endfor %}
-
-  <form method="post" action="{% url 'login' %}">
+  <form method="post">
     {% csrf_token %}
-    <label>Username</label>
-    <input type="text" name="username" required>
-    <label>Password</label>
-    <input type="password" name="password" required>
+    {{ form.as_p }}
     <button type="submit">Login</button>
   </form>
-   <a href="{% url 'register' %}">Register</a>
-</body>
-</html>
+{% endblock %}
