@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home',
     'students',
     'Day9',
+    'Notes_APP',
 ]
 
 MIDDLEWARE = [
@@ -119,7 +120,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# Static files (CSS, JavaScript, Images)
+# --------------------------------------------------
+
+STATIC_URL = '/static/'
+
+# Development static folder (where your CSS/JS/images are stored)
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',   # create 'static' folder inside project root
+]
+
+# Production static collection folder (target for collectstatic)
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

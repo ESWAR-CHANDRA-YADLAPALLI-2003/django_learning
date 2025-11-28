@@ -26,6 +26,9 @@ urlpatterns = [
     path('Day9/', include('Day9.urls')),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    # NOtes_APP
+    path('notes/', include('Notes_APP.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),  # login/logout
 
 ]
 

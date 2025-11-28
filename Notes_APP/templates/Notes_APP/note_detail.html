@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="detail-card">
+  <h1>{{ note.title }}</h1>
+  <p class="muted">By {{ note.owner.username }} • {{ note.created_at|date:"M d, Y H:i" }}</p>
+  <div class="content">{{ note.description|linebreaks }}</div>
+  <div class="actions">
+    {% if note.owner == user %}
+      <a class="btn" href="{% url 'notes:edit' note.pk %}">Edit</a>
+    {% endif %}
+    <a class="btn btn-outline" href="{% url 'notes:list' %}">Back</a>
+  </div>
+</article>
+{% endblock %}
