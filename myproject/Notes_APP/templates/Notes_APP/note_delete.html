@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card-custom" style="max-width:550px; margin:auto; text-align:center;">
+
+    <h2 style="color:#ff5050;">Delete Note</h2>
+
+    <p style="font-size:18px;">
+        Are you sure you want to delete the note:
+        <strong style="color:#4c57ff;">"{{ note.title }}"</strong> ?
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn-purple" type="submit" style="background:#ff5050;">Yes, Delete</button>
+    </form>
+
+    <br>
+    <a href="{% url 'notes_list' %}" class="btn-purple">Cancel</a>
+</div>
+
+{% endblock %}

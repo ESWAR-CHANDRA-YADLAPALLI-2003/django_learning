@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="color:#4c57ff;">Create New Note</h2>
+
+<div class="card-custom" style="max-width:600px; margin:auto;">
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class="btn-purple" type="submit">Save Note</button>
+    </form>
+
+</div>
+
+{% endblock %}

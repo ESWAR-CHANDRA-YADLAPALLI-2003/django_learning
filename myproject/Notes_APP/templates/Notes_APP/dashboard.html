@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 style="color:#4c57ff; text-align:center; margin-bottom:20px;">
+    Welcome, {{ user.username }} 👋
+</h1>
+
+<div class="card-custom" style="max-width:700px; margin:auto;">
+    <h2 style="color:#4c57ff;">Your Notes Summary</h2>
+
+    <p style="font-size:18px;">
+        Total Notes: <strong>{{ total_notes }}</strong>
+    </p>
+
+    <a class="btn-purple" href="{% url 'notes_list' %}">View All Notes</a>
+    <a class="btn-purple" href="{% url 'note_create' %}" style="background:#ff7b00; margin-left:10px;">
+        + Create New Note
+    </a>
+</div>
+
+{% endblock %}

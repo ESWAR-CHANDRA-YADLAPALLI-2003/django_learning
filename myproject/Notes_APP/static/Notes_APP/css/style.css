@@ -1,0 +1,36 @@
+:root{
+  --accent:#6C5CE7;
+  --accent-2:#00b894;
+  --bg:#f6f8fb;
+  --card:#ffffff;
+  --muted:#7d8794;
+}
+*{box-sizing:border-box}
+body{font-family:Inter, Arial, sans-serif; background:var(--bg); margin:0; color:#222;}
+.container{max-width:1000px; margin:24px auto; padding:0 16px;}
+.site-header{background:linear-gradient(90deg,var(--accent),#8e7ce6); color:#fff; padding:12px 0;}
+.site-header .container{display:flex; align-items:center; justify-content:space-between;}
+.logo{font-weight:700; letter-spacing:0.3px; color:#fff; text-decoration:none; font-size:20px;}
+nav a.btn{background:#fff; color:#333; padding:8px 12px; border-radius:6px; text-decoration:none; margin-left:8px;}
+nav a.btn-outline{background:transparent; border:1px solid rgba(255,255,255,0.2); color:#fff;}
+.welcome{margin-right:12px; opacity:0.9;}
+.site-footer{padding:16px 0; text-align:center; color:#666; margin-top:40px;}
+
+h1{color:#222; margin:18px 0;}
+.search-form{display:flex; gap:8px; margin-bottom:16px;}
+.search-form input{flex:1; padding:10px; border-radius:8px; border:1px solid #e0e0e0;}
+.search-form button{padding:10px 14px; background:var(--accent); color:#fff; border-radius:8px; border:0;}
+
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px;}
+.card{background:var(--card); border-radius:12px; padding:16px; box-shadow:0 6px 18px rgba(36,44,64,0.06);}
+.card h3{margin:0 0 8px;}
+.muted{color:var(--muted); font-size:14px}
+.meta{display:flex; justify-content:space-between; align-items:center; margin-top:12px;}
+.actions .link{margin-left:8px; color:var(--accent); text-decoration:none;}
+.actions .danger{color:#e74c3c}
+
+.detail-card{background:var(--card); padding:20px; border-radius:12px; box-shadow:0 6px 22px rgba(36,44,64,0.06);}
+
+.btn{display:inline-block; padding:10px 12px; background:var(--accent-2); color:#fff; border-radius:8px; text-decoration:none;}
+.btn-outline{background:transparent; border:1px solid #ddd; color:#333; padding:10px 12px; border-radius:8px;}
+.btn.danger, .danger{background:#e74c3c; color:#fff;}

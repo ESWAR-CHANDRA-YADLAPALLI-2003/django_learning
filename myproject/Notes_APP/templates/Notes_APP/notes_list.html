@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="color:#4c57ff; margin-bottom:20px;">My Notes</h2>
+
+<a href="{% url 'note_create' %}" class="btn-purple" style="margin-bottom:20px; display:inline-block;">
+    + Add New Note
+</a>
+
+{% for note in notes %}
+<div class="card-custom">
+    <h3 style="color:#4c57ff;">{{ note.title }}</h3>
+
+    <p>{{ note.description|truncatewords:25 }}</p>
+
+    <small>Created: {{ note.created_at|date:"d M, Y" }}</small><br><br>
+
+    <a href="{% url 'note_edit' note.id %}" class="btn-purple">Edit</a>
+    <a href="{% url 'note_delete' note.id %}" class="btn-purple" style="background:#ff5050;">Delete</a>
+</div>
+{% empty %}
+<p>No notes found. Create your first note!</p>
+{% endfor %}
+
+{% endblock %}

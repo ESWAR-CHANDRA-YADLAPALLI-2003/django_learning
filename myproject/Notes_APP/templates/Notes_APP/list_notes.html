@@ -1,0 +1,39 @@
+{% extends 'base_notes.html' %}
+{% block content %}
+
+<h2 class="mb-4 text-primary fw-bold">Your Notes</h2>
+
+<div class="row g-4">
+    {% for note in notes %}
+        <div class="col-md-4">
+            <div class="note-card p-3 shadow-lg rounded-4">
+                
+                <div class="d-flex justify-content-between">
+                    <h5 class="fw-bold">{{ note.title }}</h5>
+
+                    <a href="{% url 'note_detail' note.id %}" class="text-dark">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <p class="text-secondary">
+                    {{ note.description|truncatewords:20 }}
+                </p>
+
+                <div class="d-flex justify-content-between mt-3">
+                    <a href="{% url 'edit_note' note.id %}" class="btn btn-sm btn-primary">
+                        <i class="fa fa-edit"></i> Edit
+                    </a>
+
+                    <a href="{% url 'delete_note' note.id %}" class="btn btn-sm btn-danger">
+                        <i class="fa fa-trash"></i> Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-muted">No notes found. Create your first note!</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
