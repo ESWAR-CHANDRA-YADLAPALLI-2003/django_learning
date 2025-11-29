@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Django App{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h2>My Django Learning Project</h2>
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/about/">About</a> |
+            <a href="/contact/">Contact</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>© 2025 Eswar Chandra Yadlapalli | Django Practice</p>
+    </footer>
+</body>
+</html>

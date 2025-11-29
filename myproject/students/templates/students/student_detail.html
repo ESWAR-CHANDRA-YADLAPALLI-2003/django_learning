@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Details{% endblock %}
+
+{% block content %}
+<div class="card shadow p-4">
+    <h3 class="mb-4">Student Details</h3>
+
+    <p><strong>Name:</strong> {{ student.name }}</p>
+    <p><strong>Age:</strong> {{ student.age }}</p>
+    <p><strong>Marks:</strong> {{ student.marks }}</p>
+    <p><strong>Joined On:</strong> {{ student.joined_on }}</p>
+
+    <a href="{% url 'edit_student' student.id %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'delete_student' student.id %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'students_list' %}" class="btn btn-secondary">Back</a>
+</div>
+{% endblock %}
