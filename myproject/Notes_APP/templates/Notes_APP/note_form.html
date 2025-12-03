@@ -1,11 +1,17 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block content %}
-<h1>{% if object %}Edit{% else %}Create{% endif %} Note</h1>
-
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn">Save</button>
-  <a href="{% url 'notes:list' %}" class="btn btn-outline">Cancel</a>
-</form>
+  <h2>{% if form.instance.pk %}Edit Note{% else %}Add Note{% endif %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="mb-3">
+      {{ form.title.label_tag }} {{ form.title }}
+      {% if form.title.errors %}<div class="text-danger">{{ form.title.errors }}</div>{% endif %}
+    </div>
+    <div class="mb-3">
+      {{ form.content.label_tag }} {{ form.content }}
+      {% if form.content.errors %}<div class="text-danger">{{ form.content.errors }}</div>{% endif %}
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
 {% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Note
 from .forms import NoteForm
+from django.contrib import messages
 
 # Dashboard
 @login_required
@@ -18,16 +19,19 @@ def notes_list(request):
 # Create Note
 @login_required
 def note_create(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = NoteForm(request.POST)
         if form.is_valid():
             note = form.save(commit=False)
             note.user = request.user
             note.save()
-            return redirect('Notes_APP/notes_list')
+            messages.success(request, "Note created successfully.")
+            return redirect('notes:list')
+        else:
+            messages.error(request, "Please fix the errors below.")
     else:
         form = NoteForm()
-    return render(request, "Notes_APP/note_create.html", {"form": form})
+    return render(request, 'notes/note_form.html', {'form': form})
 
 # Edit Note
 @login_required
@@ -46,11 +50,26 @@ def note_edit(request, id):
 
 # Delete Note
 @login_required
-def note_delete(request, id):
-    note = get_object_or_404(Note, id=id, user=request.user)
-
-    if request.method == "POST":
+def note_delete(request, pk):
+    note = get_object_or_404(Note, pk=pk, user=request.user)
+    if request.method == 'POST':
         note.delete()
-        return redirect('Notes_APP/notes_list')
+        messages.warning(request, "Note deleted.")
+        return redirect('notes:list')
+    return render(request, 'notes/note_confirm_delete.html', {'note': note})
+# Note Update
+@login_required
+def note_update(request, pk):
+    note = get_object_or_404(Note, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = NoteForm(request.POST, instance=note)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Note updated successfully.")
+            return redirect('notes:detail', pk=note.pk)
+        else:
+            messages.error(request, "Please correct the highlighted errors.")
+    else:
+        form = NoteForm(instance=note)
+    return render(request, 'notes/note_form.html', {'form': form})
 
-    return render(request, "Notes_APP/note_delete.html", {"note": note})

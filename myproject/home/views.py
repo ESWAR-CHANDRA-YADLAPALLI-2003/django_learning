@@ -8,4 +8,6 @@ def about(request):
     return HttpResponse("<h2>About Page</h2><p>This is my first Django project.</p>")
 def contact(request):
     return render(request, 'contact.html')
+def home(request):
+    return render(request, "/home.html")
 
