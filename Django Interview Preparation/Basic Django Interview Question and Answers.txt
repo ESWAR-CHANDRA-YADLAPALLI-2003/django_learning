@@ -1,0 +1,356 @@
+Excellent catch, Eswar 👏
+You’re thinking exactly like an **interview candidate**, not a passive learner.
+You’re 100% right — **questions without answers don’t help interview prep**.
+
+Below is the **COMPLETE VERSION** of **PART-1: Django Basics**, where **EVERY Follow-up Question and Cross-Question now has clear, interview-ready answers**, written in **Beginner → Intermediate → Advanced flow**, with **real-time examples**.
+
+---
+
+# 🟢 PART-1: DJANGO BASICS (WITH FULL FOLLOW-UP & CROSS ANSWERS)
+
+---
+
+## 1️⃣ What is Django?
+
+### 🔰 Main Answer (Recap)
+
+Django is a **high-level Python web framework** used to build **secure, scalable, and maintainable** web applications quickly.
+It follows **MVT architecture** and provides **built-in features** like ORM, admin panel, authentication, and security.
+
+---
+
+### 🔁 Follow-up Questions — WITH ANSWERS
+
+#### Q1️⃣ Is Django suitable for small projects?
+
+✅ **Yes**, Django can be used for small projects.
+Although it has many built-in features, we can use only what we need.
+
+📌 Example:
+A simple blog or CRUD app can still benefit from Django ORM and admin panel.
+
+---
+
+#### Q2️⃣ Is Django good for APIs only?
+
+✅ Yes. Using **Django REST Framework (DRF)**, Django is widely used for **API-only backends**.
+
+📌 Example:
+Frontend (React/Angular) → Backend (Django REST API)
+
+---
+
+#### Q3️⃣ Can Django be used with frontend frameworks?
+
+✅ Yes. Django is often used as a **backend API** with:
+
+* React
+* Angular
+* Vue
+
+---
+
+### 🔀 Cross-Questions — WITH ANSWERS
+
+#### Q4️⃣ What does “batteries-included” mean?
+
+It means Django provides **ready-made solutions** like:
+
+* Authentication
+* Admin panel
+* ORM
+* Security
+
+So developers don’t need to install many third-party packages.
+
+---
+
+#### Q5️⃣ What are Django’s limitations?
+
+* Slightly heavy for very small apps
+* Steeper learning curve than Flask
+* Less flexible compared to micro frameworks
+
+---
+
+#### Q6️⃣ Is Django synchronous or asynchronous?
+
+Originally **synchronous**, but from Django 3+:
+
+* Supports **async views**
+* Uses **ASGI** for async handling
+
+---
+
+---
+
+## 2️⃣ Why Django over Flask?
+
+### 🔰 Main Answer (Recap)
+
+Django is preferred for **large, complex, and scalable applications**, while Flask is better for **small or lightweight apps**.
+
+---
+
+### 🔁 Follow-up Questions — WITH ANSWERS
+
+#### Q1️⃣ Can Flask scale like Django?
+
+Yes, Flask can scale, but:
+
+* Requires **manual configuration**
+* Needs third-party tools
+
+Django scales faster due to built-in features.
+
+---
+
+#### Q2️⃣ Can we build REST APIs using Django?
+
+Yes. With **Django REST Framework**, Django is one of the most popular API frameworks.
+
+---
+
+#### Q3️⃣ Which is faster: Flask or Django?
+
+* Flask is faster for **very small apps**
+* Django performs better in **large systems** due to optimized architecture
+
+---
+
+### 🔀 Cross-Questions — WITH ANSWERS
+
+#### Q4️⃣ When would you choose Flask over Django?
+
+* Simple APIs
+* Prototypes
+* Microservices
+
+---
+
+#### Q5️⃣ Is Django too heavy for small apps?
+
+Not really. Django can be modular; unused components don’t affect performance much.
+
+---
+
+#### Q6️⃣ Can Django be modular like Flask?
+
+Yes. Django apps are **loosely coupled and reusable**.
+
+---
+
+---
+
+## 3️⃣ Explain Django MVT Architecture
+
+### 🔰 Main Answer (Recap)
+
+MVT stands for:
+
+* **Model** → Data layer
+* **View** → Business logic
+* **Template** → UI
+
+---
+
+### 🔁 Follow-up Questions — WITH ANSWERS
+
+#### Q1️⃣ Where is Controller in Django?
+
+Django handles controller logic internally via:
+
+* URL dispatcher
+* Framework core
+
+---
+
+#### Q2️⃣ Can views return JSON?
+
+Yes. Views can return:
+
+* HTML
+* JSON
+* HTTP responses
+
+📌 Example:
+
+```python
+return JsonResponse({"status": "success"})
+```
+
+---
+
+#### Q3️⃣ What is Template Context?
+
+Context is a **dictionary** passed from view to template.
+
+```python
+return render(request, "page.html", {"name": "Eswar"})
+```
+
+---
+
+### 🔀 Cross-Questions — WITH ANSWERS
+
+#### Q4️⃣ Difference between FBV and CBV?
+
+* FBV → Simple, function-based
+* CBV → Reusable, object-oriented
+
+---
+
+#### Q5️⃣ Can templates call Python functions?
+
+❌ No.
+Templates are **logic-limited** to maintain separation of concerns.
+
+---
+
+#### Q6️⃣ What happens if template is missing?
+
+Django raises:
+
+```
+TemplateDoesNotExist
+```
+
+---
+
+---
+
+## 4️⃣ Project vs App in Django
+
+### 🔰 Main Answer (Recap)
+
+* **Project** → Entire configuration
+* **App** → Functional module
+
+---
+
+### 🔁 Follow-up Questions — WITH ANSWERS
+
+#### Q1️⃣ Can one app be used in multiple projects?
+
+✅ Yes. Django apps are **reusable**.
+
+---
+
+#### Q2️⃣ Is app mandatory in Django?
+
+Technically no, but **best practice** is to use apps for modularity.
+
+---
+
+#### Q3️⃣ Can we create custom apps?
+
+Yes, using:
+
+```bash
+python manage.py startapp appname
+```
+
+---
+
+### 🔀 Cross-Questions — WITH ANSWERS
+
+#### Q4️⃣ Difference between INSTALLED_APPS and apps folder?
+
+* apps folder → Code
+* INSTALLED_APPS → Activation/configuration
+
+---
+
+#### Q5️⃣ What happens if app is not added to settings?
+
+* Models won’t migrate
+* App features won’t work
+
+---
+
+#### Q6️⃣ How many apps can a project have?
+
+Unlimited, as long as system resources allow.
+
+---
+
+---
+
+## 5️⃣ Django Folder Structure & Key Files
+
+### 🔰 Main Answer (Recap)
+
+Django provides a structured project layout to manage configuration, routing, and execution.
+
+---
+
+### 🔁 Follow-up Questions — WITH ANSWERS
+
+#### Q1️⃣ What happens if settings.py is misconfigured?
+
+Django throws errors like:
+
+* ImproperlyConfigured
+* Database connection errors
+
+---
+
+#### Q2️⃣ Difference between WSGI and ASGI?
+
+| WSGI        | ASGI          |
+| ----------- | ------------- |
+| Synchronous | Async support |
+| Traditional | Modern        |
+
+---
+
+#### Q3️⃣ Where do we configure database?
+
+In `settings.py` → `DATABASES`
+
+---
+
+### 🔀 Cross-Questions — WITH ANSWERS
+
+#### Q4️⃣ What is middleware?
+
+Middleware is a layer that processes:
+
+* Requests before view
+* Responses after view
+
+---
+
+#### Q5️⃣ What is STATIC_URL?
+
+Defines URL path for static files like CSS and JS.
+
+---
+
+#### Q6️⃣ What is BASE_DIR?
+
+Represents the **root directory** of the Django project.
+
+---
+
+---
+
+## 🎯 How to Use This for Interviews
+
+✔ Learn **answers + reasoning**
+✔ Practice speaking each answer in **2–3 minutes**
+✔ Expect interviewer to jump from basic → deep follow-ups
+
+---
+
+## 🚀 Next (Highly Recommended)
+
+👉 **PART-2: Django ORM & Models (Most asked in interviews)**
+Includes:
+
+* ORM queries
+* Relationships
+* Migrations
+* Optimization questions
+
+Just say **“Continue with PART-2”** and we’ll go deeper step-by-step 💪
