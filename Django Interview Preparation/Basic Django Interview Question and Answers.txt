@@ -826,3 +826,372 @@ Includes:
 
 Say **“Continue with PART-3”** and we’ll go deeper step-by-step 💪
 =========================================================================================================
+
+Great 👍
+We’ll continue in the **same structured, interview-focused way**.
+
+Below is **PART-3: Views and URLs**, one of the **most frequently asked Django interview areas**.
+This section is written exactly how interviewers expect answers — **clear, layered, and scenario-based**.
+
+---
+
+# 🟢 PART-3: DJANGO VIEWS & URLS (INTERVIEW Q&A)
+
+---
+
+## 1️⃣ What are Views in Django?
+
+---
+
+## 🔰 Beginner Level
+
+### Q1️⃣ What is a view in Django?
+
+### ✅ Answer
+
+A **view** in Django is a **Python function or class** that:
+
+* Receives an HTTP request
+* Contains business logic
+* Returns an HTTP response (HTML, JSON, etc.)
+
+Views act as the **brain of a Django application**.
+
+---
+
+### 📌 Multi-line Explanation
+
+When a user hits a URL:
+
+1. Django matches the URL in `urls.py`
+2. Calls the corresponding view
+3. View processes data
+4. Returns a response to the browser
+
+---
+
+### 🌍 Real-time Example
+
+User opens:
+
+```
+/students/
+```
+
+Django:
+
+* Calls `student_list` view
+* Fetches data from DB
+* Sends HTML response
+
+---
+
+### 🔁 Follow-up Questions & Answers
+
+**Q: Can a view return JSON instead of HTML?**
+✅ Yes, views can return JSON, text, redirects, or HTML.
+
+---
+
+**Q: Where are views defined?**
+✅ Inside `views.py` of an app.
+
+---
+
+### 🔀 Cross-Questions & Answers
+
+**Q: Can one URL map to multiple views?**
+❌ No, one URL maps to only one view.
+
+---
+
+**Q: What happens if a view does not return a response?**
+❌ Django throws an error (`ValueError: View didn't return an HttpResponse`).
+
+---
+
+---
+
+## 2️⃣ What are Function-Based Views (FBVs)?
+
+---
+
+## 🔰 Beginner Level
+
+### Q2️⃣ What is a Function-Based View?
+
+### ✅ Answer
+
+A **Function-Based View (FBV)** is a **Python function** that takes an HTTP request as input and returns an HTTP response.
+
+---
+
+### 📌 Multi-line Explanation
+
+FBVs:
+
+* Are simple and readable
+* Best for small or straightforward logic
+* Use decorators for extra behavior
+
+---
+
+### 🌍 Real-time Example (FBV)
+
+```python
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to Django")
+```
+
+---
+
+### 🔁 Follow-up Questions & Answers
+
+**Q: What is the mandatory argument in an FBV?**
+✅ `request`
+
+---
+
+**Q: Can FBVs handle GET and POST requests?**
+✅ Yes, using `request.method`.
+
+```python
+if request.method == "POST":
+    ...
+```
+
+---
+
+### 🔀 Cross-Questions & Answers
+
+**Q: Can we use decorators with FBVs?**
+✅ Yes (e.g., `@login_required`).
+
+---
+
+**Q: Are FBVs slower than CBVs?**
+❌ No, performance difference is negligible.
+
+---
+
+---
+
+## 3️⃣ How does URL Routing work in Django?
+
+---
+
+## 🔰 Beginner Level
+
+### Q3️⃣ What is URL routing?
+
+### ✅ Answer
+
+URL routing maps **URL patterns to views** using `urls.py`.
+
+---
+
+### 📌 Multi-line Explanation
+
+Django uses:
+
+* `path()` or `re_path()`
+* Matches URLs top-to-bottom
+* Calls the matched view
+
+---
+
+### 🌍 Real-time Example
+
+```python
+# urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('home/', views.home),
+]
+```
+
+Accessing `/home/` triggers `home()` view.
+
+---
+
+### 🔁 Follow-up Questions & Answers
+
+**Q: What happens if URL is not matched?**
+❌ Django returns **404 Not Found**.
+
+---
+
+**Q: Can we pass data through URLs?**
+✅ Yes, using URL parameters.
+
+```python
+path('student/<int:id>/', views.student_detail)
+```
+
+---
+
+### 🔀 Cross-Questions & Answers
+
+**Q: Difference between `path()` and `re_path()`?**
+
+* `path()` → simpler, readable
+* `re_path()` → regex-based routing
+
+---
+
+**Q: What is `include()` used for?**
+✅ To include app-level URLs into project-level URLs.
+
+---
+
+---
+
+## 4️⃣ What is Template Rendering in Django?
+
+---
+
+## 🔰 Beginner Level
+
+### Q4️⃣ What is a template in Django?
+
+### ✅ Answer
+
+A **template** is an HTML file used to display dynamic data using Django Template Language (DTL).
+
+---
+
+### 📌 Multi-line Explanation
+
+Templates:
+
+* Separate UI from logic
+* Use placeholders (`{{ }}`)
+* Use template tags (`{% %}`)
+
+---
+
+### 🌍 Real-time Example
+
+**View**
+
+```python
+def profile(request):
+    return render(request, 'profile.html', {'name': 'Eswar'})
+```
+
+**Template**
+
+```html
+<h1>Welcome {{ name }}</h1>
+```
+
+---
+
+### 🔁 Follow-up Questions & Answers
+
+**Q: What is `render()` function?**
+✅ Combines template + context data + request.
+
+---
+
+**Q: Where are templates stored?**
+✅ Inside `templates/` directory.
+
+---
+
+### 🔀 Cross-Questions & Answers
+
+**Q: Can templates execute Python code?**
+❌ No, only limited logic is allowed.
+
+---
+
+**Q: What happens if template file is missing?**
+❌ Django raises `TemplateDoesNotExist`.
+
+---
+
+---
+
+## 🔵 Intermediate Level Questions
+
+---
+
+### Q5️⃣ How do you handle dynamic URLs?
+
+```python
+path('product/<slug:name>/', views.product_detail)
+```
+
+✅ Used to pass values dynamically to views.
+
+---
+
+### Q6️⃣ How do views communicate with templates?
+
+✅ Through **context dictionaries**.
+
+---
+
+### Q7️⃣ What is namespacing in URLs?
+
+✅ Prevents URL name conflicts using `app_name`.
+
+---
+
+---
+
+## 🔴 Advanced Level Questions
+
+---
+
+### Q8️⃣ What is the request-response lifecycle in Django?
+
+1. Request → URL Resolver
+2. View execution
+3. Template rendering
+4. Response sent to client
+
+---
+
+### Q9️⃣ How do you optimize views?
+
+* Use ORM optimization
+* Use caching
+* Avoid heavy logic in templates
+
+---
+
+### Q🔟 FBV vs CBV – which is better?
+
+* FBV → Simple logic
+* CBV → Reusable, scalable
+
+---
+
+## 🎯 Interview Tip (Very Important)
+
+Interviewers often ask:
+
+> “Explain how a request flows from URL to template.”
+
+You must mention:
+✔ URL routing
+✔ View logic
+✔ Template rendering
+
+---
+
+## 🚀 Next Part
+
+👉 **PART-4: Templates Deep Dive (DTL, inheritance, static files)**
+OR
+👉 **PART-4: Django Models & ORM**
+
+Just tell me which one you want next 💪
+==================================================================================
+
